@@ -1,11 +1,13 @@
-import React from "react";
-import { View, Text, FlatList } from "react-native";
+import React from 'react';
+import { View, Text, Button, TextInput, StyleSheet, ImageBackground,Image} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function CartScreen(){
-
+const cartscreen = () => {
     return(
         <View>
-            <Text> This is the cart screen! </Text>
+            <Text> The cartscreen in progress!! </Text>
         </View>
     );
 }
+
+export default cartscreen;

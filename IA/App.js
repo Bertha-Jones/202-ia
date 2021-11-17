@@ -3,10 +3,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import SignUp from './screens/SignUp';
-import ProductScreen  from './screens/ProductScreen';
-import CartScreen from './screens/CartScreen';
+import CartScreen from './screens/cartscreen';
 import DetailScreen from './screens/DetailScreen';
 import MainScreen from './screens/MainScreen';
+import LoginScreen from './screens/LoginScreen'
+import products from './consts/products';
 
 const Main = createNativeStackNavigator();
 
@@ -30,6 +31,10 @@ export default function App () {
         <Main.Screen
           name="Cart"
           component={CartScreen}
+        />
+        <Main.Screen
+        name = "Login"
+        component={LoginScreen}
         />
         <Main.Screen
           name='Details'

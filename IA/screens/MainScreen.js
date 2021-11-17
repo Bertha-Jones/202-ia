@@ -7,6 +7,7 @@ import {
   FlatList,
   Image,
   Dimensions,
+  Settings,
 } from 'react-native';
 import {TextInput, TouchableHighlight, TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -23,7 +24,7 @@ const MainScreen = ({navigation}) => {
           
         <View style={{
            height: 225,
-           backgroundColor: COLORS.light,
+           backgroundColor:'#ffffff',
            width: 150,
            marginHorizontal: 2,
            borderRadius: 10,
@@ -33,18 +34,19 @@ const MainScreen = ({navigation}) => {
            padding: 19,
           }}>
 
-          <View>
-            <Image
-              source={{uri: products.image}}
-              style={{height: 100, width: 120, borderRadius: 10}}
-            />
-          </View>
+        <View>
+          <Image
+            source={{uri: products.image}}
+            style={{height: 100, width: 120, borderRadius: 10, flex: 1}}
+          />
+        </View>
 
-          <View>
+        <View>
           <Text style={{fontWeight: 'bold', fontSize: 10, marginTop: 10}}>
             {products.title}
-            </Text>
-          </View>
+          </Text>
+        </View>
+
           <View
             style={{
               flexDirection: 'row',
@@ -58,13 +60,13 @@ const MainScreen = ({navigation}) => {
               style={{
                 height: 25,
                 width: 25,
-                backgroundColor: COLORS.orange,
+                backgroundColor: '#030c21',
                 borderRadius: 5,
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
               <Text
-                style={{fontSize: 22, color: COLORS.white, fontWeight: 'bold'}}>
+                style={{fontSize: 22, color:'#ffffff', fontWeight: 'bold'}}>
                 +
               </Text>
             </View>
@@ -75,39 +77,60 @@ const MainScreen = ({navigation}) => {
   };
 
   return (
-    <SafeAreaView
-      style={{flex: 1, paddingHorizontal: 20, backgroundColor: COLORS.white}}>
       <View style={style.header}>
-        <View>
-          <Text style={{fontSize: 25, fontWeight: 'bold'}}>Welcome to Bettys</Text>
-          <Text style={{fontSize: 38, color: COLORS.orange, fontWeight: 'bold'}}>
-              Products Shop
-          </Text>
+        <Image source = {require ('../assets/images/betty.png')} style={{height: 100, width: 130,borderRadius:30,alignSelf:'center' }}/>
+
+        <View style ={{alignSelf:'center'}}>
+             <Text style={{fontSize: 35, color:'#030c21', fontWeight: 'bold', fontFamily: 'sans-serif', padding: 9 }}>
+                PRODUCTS
+             </Text>
         </View>
-        <TouchableHighlight onPress={() => navigation.navigate('Cart')}>
-          <Icon name="shopping-cart" size={30} />
-        </TouchableHighlight>
-        
-      </View>
-      <View style={{marginTop: 30, flexDirection: 'row'}}>
-        <View style={style.searchContainer}>
-          <Icon name="search" size={25} style={{marginLeft: 20}} />
-          <TextInput placeholder="Search" style={style.input} />
+
+        <View style={{
+          flexDirection: 'row',
+          marginTop: 5,
+          justifyContent: 'space-between'
+         }}>
+
+           <View style={{marginLeft: 15, marginTop: 15}}>
+              <TouchableHighlight onPress={() => navigation.navigate('Cart')}>
+                <Icon name="shopping-cart" size={30} />
+              </TouchableHighlight>
+           </View>
+           
+            <View style={{marginTop:5, flexDirection: 'row', justifyContent: 'center',}}>
+              <View style={style.searchContainer}>
+                <Icon name="search" size={25} style={{marginLeft: 20}} />
+                <TextInput placeholder="enter search here" style={style.input} />
+              </View> 
+            </View>
+
+            <View style={{marginTop: 15, marginRight: 15}}>
+             <TouchableHighlight onPress={() => navigation.navigate('settings')}>
+             <Icon name = "settings" size ={30}/>
+             </TouchableHighlight>
+           </View>
+
         </View>
+
+       <View style={{
+         flex: 0.9, marginTop: 20, alignItems: 'flex-start', justifyContent: 'flex-start', 
+         marginLeft: 6, marginRight: 6, borderRadius: 8    
+         }}>
+          <FlatList
+              contentContainerStyle={{
+                marginTop: 10
+              }}
+            numColumns={2}
+            horizontal={false}
+            data={products}
+            renderItem={({item}) => {
+              return<Card products={item}/>;
+            }}
+          />
+       </View>
       </View>
-      <View>
-      <FlatList
-          contentContainerStyle={{
-            marginTop: 10
-          }}
-        numColumns={2}
-        data={products}
-        renderItem={({item}) => {
-          return<Card products={item}/>;
-        }}
-      />
-      </View>
-    </SafeAreaView>
+
   );
 };
 
@@ -135,20 +158,21 @@ const style = StyleSheet.create({
     padding: 15,
   },
   header: {
-    marginTop: 30,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flex: 1,
+    marginTop: 10,
+    backgroundColor:'edeceb', 
   },
   searchContainer: {
     height: 50,
-    backgroundColor: COLORS.light,
-    borderRadius: 10,
-    flex: 1,
+    width: 250,
+    backgroundColor: '#ffffff',
+    borderRadius: 60,
+    justifyContent:'center',
     flexDirection: 'row',
     alignItems: 'center',
   },
   input: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
     flex: 1,
     color: COLORS.dark,

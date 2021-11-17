@@ -45,9 +45,11 @@ export default function DetailScreen({navigation, route}){
             }}> 
                 <Text style={{marginTop: 10, textAlign: 'center', fontSize: 19, fontWeight: 'bold'}}>
                     <Text> {products.title} </Text>
-                    <Text> {products.rating.rate} </Text>
                 </Text>
-               
+
+                <Text style = {{marginTop:40,alignSelf:'center'}}>
+                    <Text > {products.description} </Text>
+                </Text>
             </View>
         </SafeAreaView>
     );
