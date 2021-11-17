@@ -6,6 +6,7 @@ const cartscreen = () => {
     return(
         <View>
             <Text> The cartscreen in progress!! </Text>
+            <Text> In progress!!! </Text>
         </View>
     );
 }
